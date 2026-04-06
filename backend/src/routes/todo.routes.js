@@ -4,12 +4,13 @@ const router=express.Router();
 
 const {getTodos,createTodos,updateTodos,deleteTodo}=require("../controllers/todo.controller");
 const {validateTodo}=require("../middleware/validateTodo.middleware");
+const {auth}=require("../middleware/auth.middleware");
 
-router.get("/",getTodos);
-router.post("/",validateTodo,createTodos);
+router.get("/",auth,getTodos);
+router.post("/",auth,validateTodo,createTodos);
 
-router.put("/:id",updateTodos);
+router.put("/:id",auth,updateTodos);
 
-router.delete("/:id",deleteTodo)
+router.delete("/:id",auth,deleteTodo)
 
-module.exports=router;
+module.exports=router; 
